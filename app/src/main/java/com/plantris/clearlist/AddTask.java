@@ -36,11 +36,25 @@ public class AddTask extends RecyclerView.Adapter<AddTask.ViewHolder> {
         return new ViewHolder(view);
     }
 
+
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         TodoItem item = todoList.get(position);
         holder.textView.setText(item.text);
-        holder.checkBox.setChecked(item.done);
+
+        // Prevent recycled checkbox issues
+        holder.checkBox.setOnCheckedChangeListener(null);
+        holder.checkBox.setChecked(false);
+
+        holder.checkBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked) {
+                int pos = holder.getBindingAdapterPosition();
+                if (pos != RecyclerView.NO_POSITION) {
+                    todoList.remove(pos);
+                    notifyItemRemoved(pos);
+                }
+            }
+        });
     }
 
     @Override

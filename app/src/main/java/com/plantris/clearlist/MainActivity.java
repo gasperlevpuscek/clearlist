@@ -21,41 +21,32 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
+    ArrayList<TodoItem> todoList;
+    AddTask adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
 
-            RecyclerView recyclerView = findViewById(R.id.recyclerView);
-            ArrayList<TodoItem> todoList = new ArrayList<>();
-            AddTask adapter = new AddTask(todoList);
+        RecyclerView recyclerView = findViewById(R.id.recyclerView);
+        todoList = new ArrayList<>();
+        adapter = new AddTask(todoList);
 
-            recyclerView.setLayoutManager(new LinearLayoutManager(this));
-            recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(adapter);
 
+        Button addtaskbutton = findViewById(R.id.add_task_button);
+        EditText editText = findViewById(R.id.text_input_field);
 
-
-
-            Button addtaskbutton = findViewById(R.id.add_task_button);
-            EditText editText = findViewById(R.id.text_input_field);
-
-            addtaskbutton.setOnClickListener(V -> {
-                String text = editText.getText().toString().trim();
-
-                if (!text.isEmpty()) {
-                    todoList.add(new TodoItem(text));
-                    adapter.notifyItemInserted(todoList.size() - 1);
-                    editText.setText("");
-                }
-            });
-
-
-            return insets;
-
+        addtaskbutton.setOnClickListener(v -> {
+            String text = editText.getText().toString().trim();
+            if (!text.isEmpty()) {
+                todoList.add(new TodoItem(text));
+                adapter.notifyItemInserted(todoList.size() - 1);
+                editText.setText("");
+            }
         });
     }
 }
