@@ -35,6 +35,10 @@
         android:text="Custom..." />
 
     <Button
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        app:cornerRadius="0dp"
+        android:backgroundTint="@color/pastelistGreen"
+        android:textColor="@color/textGray"
         android:id="@+id/btnSaveReminder"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

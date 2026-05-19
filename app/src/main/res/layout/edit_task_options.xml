@@ -6,6 +6,8 @@
     android:padding="16dp">
 
     <Button
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        app:cornerRadius="0dp"
         android:id="@+id/action_duplicate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -14,6 +16,8 @@
         android:textColor="@color/textGray" />
 
     <Button
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        app:cornerRadius="0dp"
         android:id="@+id/action_delete"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
