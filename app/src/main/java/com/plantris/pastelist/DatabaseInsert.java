@@ -145,6 +145,12 @@ public class DatabaseInsert extends SQLiteOpenHelper {
         return db.delete(DatabaseManager.FeedEntry.TABLE_NAME, selection, selectionArgs);
     }
 
+    public void deleteAllData() {
+        SQLiteDatabase db = getWritableDatabase();
+        db.delete(DatabaseManager.FeedEntry.TABLE_NAME, null, null);
+        db.delete(DatabaseManager.SubtaskEntry.TABLE_NAME, null, null);
+    }
+
     public ArrayList<TodoItem> readAllEntries() {
         ArrayList<TodoItem> items = new ArrayList<>();
         SQLiteDatabase db = getReadableDatabase();

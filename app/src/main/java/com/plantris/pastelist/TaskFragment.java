@@ -19,7 +19,7 @@ import java.util.ArrayList;
 
 public class TaskFragment extends Fragment {
 
-    private ArrayList<TodoItem> todoList = new ArrayList<>();
+    private final ArrayList<TodoItem> todoList = new ArrayList<>();
     private TodoAdapter adapter;
     private boolean showCompletedOnly = false;
 
@@ -71,6 +71,12 @@ public class TaskFragment extends Fragment {
 
         view.findViewById(R.id.add_task_button).setOnClickListener(v -> showAddTaskSheet());
         view.findViewById(R.id.switch_views).setOnClickListener(v -> loadTasks(!showCompletedOnly));
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        loadTasks(showCompletedOnly);
     }
 
     @SuppressLint("NotifyDataSetChanged")

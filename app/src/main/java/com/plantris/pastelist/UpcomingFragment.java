@@ -1,5 +1,6 @@
 package com.plantris.pastelist;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 
@@ -22,9 +23,9 @@ import java.util.Map;
 
 public class UpcomingFragment extends Fragment {
 
-    private static DateTimeFormatter DB_DATE_FORMATTER =
+    private final static DateTimeFormatter DB_DATE_FORMATTER =
             DateTimeFormatter.ofPattern("dd.MM.yyyy", Locale.getDefault());
-    private static DateTimeFormatter DB_TIME_FORMATTER =
+    private final DateTimeFormatter DB_TIME_FORMATTER =
             DateTimeFormatter.ofPattern("HH:mm", Locale.getDefault());
 
     private UpcomingDateAdapter upcomingDateAdapter;
@@ -70,7 +71,7 @@ public class UpcomingFragment extends Fragment {
         loadUpcomingDays();
     }
 
-
+    @SuppressLint("NotifyDataSetChanged")
     private void loadUpcomingDays() {
         if (upcomingDateAdapter == null) {
             return;
