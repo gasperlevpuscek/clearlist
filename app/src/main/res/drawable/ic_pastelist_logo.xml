@@ -1,0 +1,65 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="512dp"
+    android:height="512dp"
+    android:viewportWidth="390"
+    android:viewportHeight="430">
+
+    <group
+        android:translateX="-62"
+        android:translateY="-30">
+
+        <!-- Clipboard back -->
+    <path
+        android:fillColor="@android:color/transparent"
+        android:strokeColor="#2F4356"
+        android:strokeWidth="18"
+        android:pathData="M145,115 L367,115 Q390,115 390,138 L390,398 Q390,421 367,421 L145,421 Q122,421 122,398 L122,138 Q122,115 145,115 Z" />
+
+    <!-- Clip -->
+    <path
+        android:fillColor="#2F4356"
+        android:pathData="M205,80 L235,80 Q238,50 256,50 Q274,50 277,80 L307,80 Q323,80 323,96 L323,125 Q323,141 307,141 L205,141 Q189,141 189,125 L189,96 Q189,80 205,80 Z M246,80 L266,80 Q263,66 256,66 Q249,66 246,80 Z" />
+
+    <!-- Check 1 -->
+    <path
+        android:strokeColor="#2F4356"
+        android:strokeWidth="16"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:fillColor="@android:color/transparent"
+        android:pathData="M170,190 L195,215 L235,170" />
+
+    <!-- Check 2 -->
+    <path
+        android:strokeColor="#2F4356"
+        android:strokeWidth="16"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:fillColor="@android:color/transparent"
+        android:pathData="M170,270 L195,295 L235,250" />
+
+    <!-- Check 3 -->
+    <path
+        android:strokeColor="#2F4356"
+        android:strokeWidth="16"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:fillColor="@android:color/transparent"
+        android:pathData="M170,350 L195,375 L235,330" />
+
+    <!-- Lines -->
+    <path
+        android:strokeColor="#2F4356"
+        android:strokeWidth="12"
+        android:strokeLineCap="round"
+        android:fillColor="@android:color/transparent"
+        android:pathData="M265,198 L340,198 M265,278 L340,278 M265,358 L325,358" />
+
+    <!-- Page curl -->
+    <path
+        android:fillColor="#D7E6F8"
+        android:pathData="M335,421 L390,366 L390,421 Z" />
+
+    </group>
+
+</vector>

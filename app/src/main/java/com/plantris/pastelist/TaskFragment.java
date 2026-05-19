@@ -70,7 +70,6 @@ public class TaskFragment extends Fragment {
         loadTasks(false);
 
         view.findViewById(R.id.add_task_button).setOnClickListener(v -> showAddTaskSheet());
-        view.findViewById(R.id.switch_views).setOnClickListener(v -> loadTasks(!showCompletedOnly));
     }
 
     @Override

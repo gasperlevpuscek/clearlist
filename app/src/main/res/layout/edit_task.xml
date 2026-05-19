@@ -125,7 +125,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Subtasks"
+                        android:text="@string/subtasks"
                         android:textColor="@color/textGray"
                         android:textSize="20sp"
                         android:textStyle="bold" />
@@ -149,11 +149,22 @@
                     android:textColor="@color/textGray"
                     app:cornerRadius="0dp" />
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/subTaskView"
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp" />
+                    android:layout_marginTop="12dp"
+                    android:layout_marginBottom="10dp">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/subTaskView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constrainedHeight="true"
+                        app:layout_constraintHeight_max="140dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>

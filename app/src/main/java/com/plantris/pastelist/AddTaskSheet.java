@@ -81,6 +81,9 @@ public class AddTaskSheet {
             taskNameInput.setText(safe(itemToEdit.getTitle()));
             taskDescriptionInput.setText(safe(itemToEdit.getDescription()));
             btnOpenDatePicker.setText(formatDateTimeLabel(activity, selectedDate[0], selectedTime[0]));
+            if (selectedReminderMinutesBefore[0] != null) {
+                btnOpenReminderPicker.setText(formatReminderLabel(activity, selectedReminderMinutesBefore[0]));
+            }
         }
 
         btnOpenDatePicker.setOnClickListener(v ->
@@ -92,7 +95,10 @@ public class AddTaskSheet {
         );
 
         btnOpenReminderPicker.setOnClickListener(v ->
-                ReminderSheet.showReminder(activity, reminderMinutesBefore -> selectedReminderMinutesBefore[0] = reminderMinutesBefore)
+                ReminderSheet.showReminder(activity, reminderMinutesBefore -> {
+                    selectedReminderMinutesBefore[0] = reminderMinutesBefore;
+                    btnOpenReminderPicker.setText(formatReminderLabel(activity, reminderMinutesBefore));
+                })
         );
 
 
@@ -199,6 +205,22 @@ public class AddTaskSheet {
         return date + " " + time;
     }
 
+    private static String formatReminderLabel(@NonNull AppCompatActivity activity, @Nullable Integer minutesBefore) {
+        if (minutesBefore == null) {
+            return activity.getString(R.string.reminder);
+        }
+        if (minutesBefore == 0) {
+            return "At time of event";
+        }
+        if (minutesBefore == 60) {
+            return "1 hour before";
+        }
+        if (minutesBefore == 1440) {
+            return "1 day before";
+        }
+        return minutesBefore + " min before";
+    }
+
     @NonNull
     private static String safe(@Nullable String value) {
         return value == null ? "" : value;
@@ -276,5 +298,4 @@ public class AddTaskSheet {
 
 
 }
-
 

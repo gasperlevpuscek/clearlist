@@ -9,8 +9,10 @@ import android.util.Log;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.viewpager2.widget.ViewPager2;
 
@@ -23,12 +25,19 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
+
+        WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
+        getWindow().setNavigationBarColor(
+                ContextCompat.getColor(this, R.color.lightGray)
+        );
+
         setContentView(R.layout.activity_main);
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, 0);
             return insets;
-        });
+        });;
 
         ViewPager2 viewPager = findViewById(R.id.viewPager);
         MaterialButton btnTasks = findViewById(R.id.btnTasks);
@@ -36,11 +45,11 @@ public class MainActivity extends AppCompatActivity {
         MaterialButton btnSettings = findViewById(R.id.btnPreferences);
 
         viewPager.setAdapter(new MainPagerAdapter(this));
-        viewPager.setUserInputEnabled(false);
+        viewPager.setUserInputEnabled(true);
 
-        btnTasks.setOnClickListener(v -> viewPager.setCurrentItem(0, false));
-        btnUpcoming.setOnClickListener(v -> viewPager.setCurrentItem(1, false));
-        btnSettings.setOnClickListener(v -> viewPager.setCurrentItem(2, false));
+        btnTasks.setOnClickListener(v -> viewPager.setCurrentItem(0, true));
+        btnUpcoming.setOnClickListener(v -> viewPager.setCurrentItem(1, true));
+        btnSettings.setOnClickListener(v -> viewPager.setCurrentItem(2, true));
 
         createNotificationChannel();
 

@@ -58,10 +58,10 @@
         <com.google.android.material.button.MaterialButton
             android:id="@+id/atTaskReminder"
             android:layout_width="0dp"
-            android:layout_height="49dp"
+            android:layout_height="55dp"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
-            android:text="Reminder"
+            android:text="@string/reminder"
             android:textAllCaps="false"
             android:textColor="@color/textGray"
             android:backgroundTint="@color/white"
@@ -75,7 +75,7 @@
         <com.google.android.material.button.MaterialButton
             android:id="@+id/atTaskOpenDatePicker"
             android:layout_width="0dp"
-            android:layout_height="49dp"
+            android:layout_height="55dp"
             android:layout_marginStart="8dp"
             android:text="@string/date"
             android:textAllCaps="false"

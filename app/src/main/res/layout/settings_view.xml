@@ -10,17 +10,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="24dp">
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Account"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="12dp"
+            android:text="@string/preferences"
             android:textColor="@color/textGray"
             android:textSize="34sp"
-            android:textStyle="bold"
-            android:layout_marginTop="24dp"
-            android:layout_marginBottom="24dp" />
+            android:textStyle="bold" />
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
@@ -39,7 +40,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Sign in"
+                    android:text="@string/sign_in"
                     android:textColor="@color/textGray"
                     android:textSize="20sp"
                     android:textStyle="bold"
@@ -48,7 +49,7 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Email"
+                    android:hint="@string/email"
                     app:boxCornerRadiusTopStart="0dp"
                     app:boxCornerRadiusTopEnd="0dp"
                     app:boxCornerRadiusBottomStart="0dp"
@@ -65,7 +66,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="14dp"
-                    android:hint="Password"
+                    android:hint="@string/password"
                     app:endIconMode="password_toggle"
                     app:boxCornerRadiusTopStart="0dp"
                     app:boxCornerRadiusTopEnd="0dp"
@@ -85,7 +86,7 @@
                     android:layout_height="52dp"
                     android:layout_marginTop="22dp"
                     android:backgroundTint="@color/pastelistGreen"
-                    android:text="Login"
+                    android:text="@string/login"
                     android:textColor="@color/textGray"
                     app:cornerRadius="0dp" />
 
@@ -94,8 +95,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="52dp"
                     android:layout_marginTop="10dp"
-                    android:backgroundTint="#EDEDED"
-                    android:text="Create Account"
+                    android:backgroundTint="@color/lightGray"
+                    android:text="@string/create_account"
                     android:textColor="@color/textGray"
                     app:cornerRadius="0dp" />
 
@@ -118,7 +119,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Cloud Backup"
+                    android:text="@string/cloud_backup"
                     android:textColor="@color/textGray"
                     android:textSize="20sp"
                     android:textStyle="bold"
@@ -127,7 +128,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Save or restore your tasks using Firebase."
+                    android:text="@string/backup_description"
                     android:textColor="@color/textGray"
                     android:textSize="14sp"
                     android:layout_marginBottom="18dp" />
@@ -137,7 +138,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="52dp"
                     android:backgroundTint="@color/pastelistGreen"
-                    android:text="Backup Tasks"
+                    android:text="@string/backup_tasks"
                     android:textColor="@color/textGray"
                     app:cornerRadius="0dp" />
 
@@ -146,8 +147,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="52dp"
                     android:layout_marginTop="10dp"
-                    android:backgroundTint="#EDEDED"
-                    android:text="Restore Tasks"
+                    android:backgroundTint="@color/lightGray"
+                    android:text="@string/restore_tasks"
                     android:textColor="@color/textGray"
                     app:cornerRadius="0dp" />
 
