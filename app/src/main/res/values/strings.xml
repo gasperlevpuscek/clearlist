@@ -64,4 +64,6 @@
     <string name="category_work">Work</string>
     <string name="category_none">None</string>
     <string name="category_personal">Personal</string>
+
+    <string name="air"> </string>
 </resources>

@@ -33,7 +33,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="4dp"
-            android:textColor="@color/pastelistGreen"
+            android:textColor="@color/hintGray"
             android:textSize="12sp"
             android:textStyle="bold"
             android:visibility="gone" />
@@ -86,21 +86,6 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/textGray"
                 android:textSize="12sp" />
-
-            <TextView
-                android:id="@+id/textViewCategory"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:paddingStart="8dp"
-                android:paddingTop="2dp"
-                android:paddingEnd="8dp"
-                android:paddingBottom="2dp"
-                android:background="@color/pastelistGreen"
-                android:textColor="@color/white"
-                android:textSize="10sp"
-                android:visibility="gone" />
-
         </LinearLayout>
 
     </LinearLayout>

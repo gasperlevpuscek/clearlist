@@ -1,5 +1,6 @@
 package com.plantris.pastelist;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -16,7 +17,6 @@ import java.util.ArrayList;
 public class SearchTasks extends AppCompatActivity {
 
     private TextInputEditText searchTaskInput;
-    private RecyclerView searchResultsView;
     private TodoAdapter adapter;
     private ArrayList<TodoItem> searchResults;
 
@@ -26,7 +26,7 @@ public class SearchTasks extends AppCompatActivity {
         setContentView(R.layout.search_tasks);
 
         searchTaskInput = findViewById(R.id.searchTaskInput);
-        searchResultsView = findViewById(R.id.searchResultsView);
+        RecyclerView searchResultsView = findViewById(R.id.searchResultsView);
 
         searchResults = new ArrayList<>();
         adapter = new TodoAdapter(
@@ -38,46 +38,46 @@ public class SearchTasks extends AppCompatActivity {
                     searchResults.remove(position);
                     adapter.notifyItemRemoved(position);
                 },
-                (item, position) -> {
-                    EditTask.show(SearchTasks.this, item, new EditTask.OnTaskActionListener() {
-                        @Override
-                        public void onDuplicateRequested(@NonNull TodoItem sourceItem) {
-                            try (DatabaseInsert dbHelper = new DatabaseInsert(SearchTasks.this)) {
-                                dbHelper.insertEntry(
-                                        sourceItem.getTitle(),
-                                        sourceItem.getDescription(),
-                                        sourceItem.getDate(),
-                                        sourceItem.getTime(),
-                                        sourceItem.isCompleted(),
-                                        sourceItem.getReminderMinutesBefore()
-                                );
-                            }
-                            performSearch(searchTaskInput.getText().toString());
+                (item, position) -> EditTask.show(SearchTasks.this, item, new EditTask.OnTaskActionListener() {
+                    @Override
+                    public void onDuplicateRequested(@NonNull TodoItem sourceItem) {
+                        try (DatabaseInsert dbHelper = new DatabaseInsert(SearchTasks.this)) {
+                            dbHelper.insertEntry(
+                                    sourceItem.getTitle(),
+                                    sourceItem.getDescription(),
+                                    sourceItem.getDate(),
+                                    sourceItem.getTime(),
+                                    sourceItem.isCompleted(),
+                                    sourceItem.getReminderMinutesBefore()
+                            );
                         }
+                        performSearch(getSearchText());
+                    }
 
-                        @Override
-                        public void onDeleteConfirmed(@NonNull TodoItem sourceItem) {
-                            try (DatabaseInsert dbHelper = new DatabaseInsert(SearchTasks.this)) {
-                                dbHelper.deleteEntry(sourceItem.getId());
-                            }
-                            performSearch(searchTaskInput.getText().toString());
+                    @Override
+                    public void onDeleteConfirmed(@NonNull TodoItem sourceItem) {
+                        try (DatabaseInsert dbHelper = new DatabaseInsert(SearchTasks.this)) {
+                            dbHelper.deleteEntry(sourceItem.getId());
                         }
+                        performSearch(getSearchText());
+                    }
 
-                        @Override
-                        public void onSaveRequested(@NonNull TodoItem sourceItem) {
-                            try (DatabaseInsert dbHelper = new DatabaseInsert(SearchTasks.this)) {
-                                dbHelper.updateEntry(
-                                        sourceItem.getId(),
-                                        sourceItem.getTitle(),
-                                        sourceItem.getDescription(),
-                                        sourceItem.getDate(),
-                                        sourceItem.getTime()
-                                );
-                            }
-                            performSearch(searchTaskInput.getText().toString());
+                    @Override
+                    public void onSaveRequested(@NonNull TodoItem sourceItem) {
+                        try (DatabaseInsert dbHelper = new DatabaseInsert(SearchTasks.this)) {
+                            dbHelper.updateEntry(
+                                    sourceItem.getId(),
+                                    sourceItem.getTitle(),
+                                    sourceItem.getDescription(),
+                                    sourceItem.getDate(),
+                                    sourceItem.getTime(),
+                                    sourceItem.getReminderMinutesBefore(),
+                                    sourceItem.getCategory()
+                            );
                         }
-                    });
-                },
+                        performSearch(getSearchText());
+                    }
+                }),
                 null
         );
 
@@ -90,7 +90,7 @@ public class SearchTasks extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                performSearch(s.toString());
+                performSearch(s == null ? "" : s.toString());
             }
 
             @Override
@@ -98,20 +98,29 @@ public class SearchTasks extends AppCompatActivity {
         });
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private void performSearch(String query) {
         searchResults.clear();
 
         try (DatabaseInsert dbHelper = new DatabaseInsert(this)) {
             ArrayList<TodoItem> allTasks = dbHelper.readAllEntries();
-            String lowerQuery = query.toLowerCase();
+            String lowerQuery = query == null ? "" : query.trim().toLowerCase();
 
             for (TodoItem task : allTasks) {
-                if (task.getTitle().toLowerCase().contains(lowerQuery)) {
+                String title = task.getTitle() == null ? "" : task.getTitle().toLowerCase();
+                String category = task.getCategory() == null ? "" : task.getCategory().toLowerCase();
+
+                if (title.contains(lowerQuery) || category.contains(lowerQuery)) {
                     searchResults.add(task);
                 }
             }
         }
 
         adapter.notifyDataSetChanged();
+    }
+
+    private String getSearchText() {
+        Editable text = searchTaskInput.getText();
+        return text == null ? "" : text.toString();
     }
 }
