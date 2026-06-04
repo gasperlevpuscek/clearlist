@@ -29,9 +29,19 @@
             android:layout_marginBottom="4dp"/>
 
         <TextView
+            android:id="@+id/textViewCategory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:textColor="@color/pastelistGreen"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:visibility="gone" />
+
+        <TextView
             android:id="@+id/textViewDescription"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="16dp"
             android:textColor="@color/textGray"
             android:textSize="12sp"
             />
@@ -76,6 +86,20 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/textGray"
                 android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/textViewCategory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:paddingStart="8dp"
+                android:paddingTop="2dp"
+                android:paddingEnd="8dp"
+                android:paddingBottom="2dp"
+                android:background="@color/pastelistGreen"
+                android:textColor="@color/white"
+                android:textSize="10sp"
+                android:visibility="gone" />
 
         </LinearLayout>
 

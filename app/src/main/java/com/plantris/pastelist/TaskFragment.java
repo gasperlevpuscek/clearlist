@@ -24,7 +24,7 @@ public class TaskFragment extends Fragment {
     private boolean showCompletedOnly = false;
 
     public TaskFragment() {
-        super(R.layout.task_view);
+        super(R.layout.view_task);
     }
 
     @SuppressLint("NotifyDataSetChanged")

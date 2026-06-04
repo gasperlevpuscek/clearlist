@@ -5,10 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:backgroundTint="@color/backgroundWhite"
-    android:background="@color/backgroundWhite"
-    android:paddingTop="16dp">
-
+    android:background="@color/white"
+    android:paddingTop="20dp"
+    android:paddingBottom="12dp">
 
     <TextView
         android:id="@+id/tvDateTitle"
@@ -16,23 +15,27 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
-        android:layout_marginBottom="12dp"
+        android:layout_marginBottom="14dp"
         android:text="@string/date"
-        android:textColor="@android:color/black"
-        android:textSize="28sp" />
-
-    <Button
-        app:cornerRadius="0dp"
-        android:focusedMonthDateColor="@color/pastelistGreen"
-        android:backgroundTint="@color/white"
         android:textColor="@color/textGray"
+        android:textSize="28sp"
+        android:textStyle="bold" />
+
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnNoDate"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="54dp"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="16dp"
-        android:text="@string/no_date" />
+        android:backgroundTint="@color/white"
+        android:text="@string/no_date"
+        android:textAllCaps="false"
+        android:textColor="@color/textGray"
+        android:textSize="15sp"
+        app:cornerRadius="0dp"
+        app:strokeColor="@color/hintGray"
+        app:strokeWidth="1dp" />
 
     <View
         android:layout_width="match_parent"
@@ -42,15 +45,20 @@
         android:background="#E0E0E0" />
 
     <CalendarView
-        android:background="@android:color/white"
         android:id="@+id/calendarView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:background="@color/white"
+        android:firstDayOfWeek="2"
         android:showWeekNumber="false"
-        android:firstDayOfWeek="2" />
+        android:focusedMonthDateColor="@color/textGray"
+        android:selectedWeekBackgroundColor="@color/pastelistGreen"
+        android:weekSeparatorLineColor="#E0E0E0"
+        android:unfocusedMonthDateColor="@color/hintGray"
+        android:weekNumberColor="@color/hintGray" />
 
     <View
         android:layout_width="match_parent"
@@ -64,7 +72,6 @@
         android:layout_height="60dp"
         android:orientation="horizontal"
         android:gravity="center_vertical"
-        android:textColor="@color/textGray"
         android:paddingStart="24dp"
         android:paddingEnd="24dp"
         android:clickable="true"
@@ -76,21 +83,25 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/add_time"
-            android:textSize="18sp"
-            android:textColor="#666666" />
+            android:textColor="@color/textGray"
+            android:textSize="18sp" />
+
     </LinearLayout>
 
-    <Button
-        app:cornerRadius="0dp"
-        android:backgroundTint="@color/pastelistGreen"
-        android:textColor="@color/textGray"
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnSaveDate"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="54dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="8dp"
-        android:text="@string/save" />
+        android:backgroundTint="@color/pastelistGreen"
+        android:text="@string/save"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:cornerRadius="0dp" />
 
 </LinearLayout>

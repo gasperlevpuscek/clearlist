@@ -1,28 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:background="@color/white"
+    android:paddingStart="24dp"
+    android:paddingTop="20dp"
+    android:paddingEnd="24dp"
+    android:paddingBottom="16dp">
 
-    <Button
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        app:cornerRadius="0dp"
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Task actions"
+        android:textColor="@color/textGray"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="24dp"/>
+
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/action_duplicate"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="54dp"
+        android:backgroundTint="@color/white"
+        android:gravity="center"
         android:text="@string/duplicate_task"
-        android:backgroundTint="@color/secondaryGray"
-        android:textColor="@color/textGray" />
-
-    <Button
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:textAllCaps="false"
+        android:textColor="@color/textGray"
+        android:textSize="15sp"
         app:cornerRadius="0dp"
+        app:icon="@android:drawable/ic_menu_upload"
+        app:iconGravity="textStart"
+        app:iconPadding="8dp"
+        app:iconTint="@color/hintGray"
+        app:strokeColor="@color/hintGray"
+        app:strokeWidth="1dp" />
+
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/action_delete"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="54dp"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="@color/pastelRed"
         android:text="@string/delete_task_no_question_mark"
-        android:backgroundTint="@color/secondaryGray"
-        android:textColor="@color/textGray"
-        android:layout_marginTop="8dp" />
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:cornerRadius="0dp"
+        app:icon="@android:drawable/ic_menu_delete"
+        app:iconGravity="textStart"
+        app:iconPadding="10dp"
+        app:iconTint="@color/white" />
+
 </LinearLayout>

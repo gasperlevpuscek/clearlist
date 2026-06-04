@@ -83,11 +83,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        // Permanently remove tasks that have been marked completed while the app was running.
         try (DatabaseInsert dbHelper = new DatabaseInsert(this)) {
             dbHelper.deleteCompletedEntries();
         } catch (Exception ignored) {
-            // ignore errors during cleanup
         }
     }
 }

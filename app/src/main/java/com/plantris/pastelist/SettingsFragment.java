@@ -1,5 +1,6 @@
 package com.plantris.pastelist;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -22,7 +23,7 @@ import java.util.Map;
 public class SettingsFragment extends Fragment {
 
     public SettingsFragment() {
-        super(R.layout.settings_view);
+        super(R.layout.view_settings);
     }
 
     @Override
@@ -35,6 +36,7 @@ public class SettingsFragment extends Fragment {
         Button buttonSignIn = view.findViewById(R.id.buttonSignIn);
         Button buttonSync = view.findViewById(R.id.buttonSync);
         Button buttonLoad = view.findViewById(R.id.buttonLoad);
+        Button buttonSearchTasks = view.findViewById(R.id.buttonSearchTasks);
 
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         if (currentUser != null && currentUser.getEmail() != null) {
@@ -52,6 +54,12 @@ public class SettingsFragment extends Fragment {
 
         // Load tasks from DB
         buttonLoad.setOnClickListener(v -> loadTasksFromFirebase());
+
+
+        buttonSearchTasks.setOnClickListener(v -> {
+            Intent intent = new Intent(requireContext(), SearchTasks.class);
+            startActivity(intent);
+        });
     }
 
     private void loadTasksFromFirebase() {

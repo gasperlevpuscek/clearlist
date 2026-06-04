@@ -16,6 +16,7 @@ public class DatabaseManager {
         public static final String COLUMN_NAME_TIME = "plt_time";
         public static final String COLUMN_UNTIL_REMINDER = "plt_until_reminder";
         public static final String COLUMN_NAME_COMPLETED = "plt_completed";
+        public static final String COLUMN_NAME_CATEGORY = "plt_category";
     }
 
     public static final String SQL_CREATE_ENTRIES =
@@ -26,7 +27,8 @@ public class DatabaseManager {
                     FeedEntry.COLUMN_NAME_DATE + " TEXT," +
                     FeedEntry.COLUMN_NAME_TIME + " TEXT," +
                     FeedEntry.COLUMN_UNTIL_REMINDER + " INTEGER," +
-                    FeedEntry.COLUMN_NAME_COMPLETED + " INTEGER NOT NULL DEFAULT 0)";
+                    FeedEntry.COLUMN_NAME_COMPLETED + " INTEGER NOT NULL DEFAULT 0," +
+                    FeedEntry.COLUMN_NAME_CATEGORY + " TEXT);";
 
     public static final String SQL_DELETE_ENTRIES =
             "DROP TABLE IF EXISTS " + FeedEntry.TABLE_NAME;

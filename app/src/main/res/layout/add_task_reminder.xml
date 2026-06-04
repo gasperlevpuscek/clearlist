@@ -1,47 +1,70 @@
-<RadioGroup android:id="@+id/reminderRadioGroup"
+<?xml version="1.0" encoding="utf-8"?>
+<RadioGroup
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/reminderRadioGroup"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    android:background="@color/white"
+    android:paddingStart="24dp"
+    android:paddingTop="20dp"
+    android:paddingEnd="24dp"
+    android:paddingBottom="12dp">
 
     <RadioButton
         android:id="@+id/reminder_none"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="No reminder" />
+        android:layout_height="56dp"
+        android:buttonTint="@color/pastelistGreen"
+        android:gravity="center_vertical"
+        android:text="@string/reminder_none"
+        android:textColor="@color/textGray"
+        android:textSize="16sp" />
 
     <RadioButton
         android:id="@+id/reminder_due_time"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="At due time" />
+        android:layout_height="56dp"
+        android:buttonTint="@color/pastelistGreen"
+        android:gravity="center_vertical"
+        android:text="@string/reminder_due_time"
+        android:textColor="@color/textGray"
+        android:textSize="16sp" />
 
     <RadioButton
         android:id="@+id/reminder_1_hour"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="1 hour before" />
+        android:layout_height="56dp"
+        android:buttonTint="@color/pastelistGreen"
+        android:gravity="center_vertical"
+        android:text="@string/reminder_1_hour"
+        android:textColor="@color/textGray"
+        android:textSize="16sp" />
 
     <RadioButton
         android:id="@+id/reminder_1_day"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="1 day before" />
-
-    <RadioButton
-        android:id="@+id/reminder_custom"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Custom..." />
-
-    <Button
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        app:cornerRadius="0dp"
-        android:backgroundTint="@color/pastelistGreen"
+        android:layout_height="56dp"
+        android:buttonTint="@color/pastelistGreen"
+        android:gravity="center_vertical"
+        android:text="@string/reminder_1_day"
         android:textColor="@color/textGray"
+        android:textSize="16sp" />
+
+
+
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnSaveReminder"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="save"/>
+        android:layout_height="54dp"
+        android:layout_marginTop="14dp"
+        android:backgroundTint="@color/pastelistGreen"
+        android:text="@string/save"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:cornerRadius="0dp" />
 
 </RadioGroup>

@@ -1,51 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="20dp"
-    style="?android:attr/buttonBarStyle">
+    android:background="@color/white"
+    android:padding="24dp">
 
-    <!-- Message -->
     <TextView
         android:id="@+id/text_delete_message"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/textGray"
         android:text="@string/delete_task"
+        android:textColor="@color/textGray"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:paddingBottom="16dp" />
+        android:paddingBottom="18dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <Button
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            app:cornerRadius="0dp"
-            android:backgroundTint="@color/white"
-            android:textColor="@color/textGray"
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/button_cancel"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="54dp"
             android:layout_weight="1"
+            android:backgroundTint="@color/white"
             android:text="@string/keep_it"
-            style="?android:attr/buttonBarButtonStyle"/>
-
-        <Button
-            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:textAllCaps="false"
+            android:textColor="@color/textGray"
+            android:textSize="15sp"
             app:cornerRadius="0dp"
+            app:strokeColor="@color/hintGray"
+            app:strokeWidth="1dp" />
+
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/button_delete"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:backgroundTint="@color/pastelRed"
+            android:layout_height="54dp"
+            android:layout_marginStart="10dp"
             android:layout_weight="1"
+            android:backgroundTint="@color/pastelRed"
             android:text="@string/yes_delete"
-            android:layout_marginStart="8dp"
-            style="?android:attr/buttonBarButtonStyle"/>
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:cornerRadius="0dp" />
 
     </LinearLayout>
 

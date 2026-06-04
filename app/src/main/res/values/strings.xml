@@ -8,7 +8,6 @@
     <string name="atTaskTime">Task time</string>
     <string name="switch_views">Switch views</string>
     <string name="add_time">Add time</string>
-    <string name="save">Save</string>
     <string name="no_date">No date</string>
     <string name="date">Date</string>
     <string name="upcoming">Upcoming</string>
@@ -30,7 +29,6 @@
 
     <string name="add_subtask">Add sub-task</string>
 
-    <!-- Settings strings -->
     <string name="account">Account</string>
     <string name="sign_in">Sign in</string>
     <string name="email">Email</string>
@@ -42,8 +40,28 @@
     <string name="backup_tasks">Sync To Cloud</string>
     <string name="restore_tasks">Load from Cloud</string>
 
-    <!-- General UI strings -->
     <string name="reminder">Reminder</string>
     <string name="subtasks">Subtasks</string>
 
+
+    <string name="reminder_none">No reminder</string>
+    <string name="reminder_due_time">At due time</string>
+    <string name="reminder_1_hour">1 hour before</string>
+    <string name="reminder_1_day">1 day before</string>
+    <string name="reminder_custom">Custom</string>
+    <string name="save">Save</string>
+
+    <string name="preferences_subtitle">Manage your account and backup options</string>
+    <string name="search_tasks">Search Tasks</string>
+    <string name="sign_in_subtitle">Sign in to sync tasks</string>
+
+    <string name="search">Search</string>
+    <string name="search_subtitle">Find your tasks quickly</string>
+    <string name="search_task_name">Search task name</string>
+    <string name="category">Category</string>
+    <string name="category_subtitle">Choose where this task belongs</string>
+    <string name="category_school">School</string>
+    <string name="category_work">Work</string>
+    <string name="category_none">None</string>
+    <string name="category_personal">Personal</string>
 </resources>

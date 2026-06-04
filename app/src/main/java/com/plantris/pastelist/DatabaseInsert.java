@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class DatabaseInsert extends SQLiteOpenHelper {
 
-    public static int DATABASE_VERSION = 5;
+    public static int DATABASE_VERSION = 6;
     public static String DATABASE_NAME = "PasteList.db";
 
     public DatabaseInsert(Context context) {
@@ -46,6 +46,13 @@ public class DatabaseInsert extends SQLiteOpenHelper {
         if (oldVersion < 5) {
             db.execSQL(DatabaseManager.SQL_CREATE_SETTINGS_ENTRIES);
         }
+        if (oldVersion < 6) {
+            db.execSQL(
+                    "ALTER TABLE " + DatabaseManager.FeedEntry.TABLE_NAME +
+                            " ADD COLUMN " + DatabaseManager.FeedEntry.COLUMN_NAME_CATEGORY +
+                            " TEXT"
+            );
+        }
     }
 
     @Override
@@ -54,11 +61,11 @@ public class DatabaseInsert extends SQLiteOpenHelper {
     }
 
     public long insertEntry(String title, String description, String date, String time) {
-        return insertEntry(title, description, date, time, false, null);
+        return insertEntry(title, description, date, time, false, null, null);
     }
 
     public long insertEntry(String title, String description, String date, String time, boolean isCompleted) {
-        return insertEntry(title, description, date, time, isCompleted, null);
+        return insertEntry(title, description, date, time, isCompleted, null, null);
     }
 
     public long insertEntry(
@@ -68,6 +75,18 @@ public class DatabaseInsert extends SQLiteOpenHelper {
             String time,
             boolean isCompleted,
             Integer reminderMinutesBefore
+    ) {
+        return insertEntry(title, description, date, time, isCompleted, reminderMinutesBefore, null);
+    }
+
+    public long insertEntry(
+            String title,
+            String description,
+            String date,
+            String time,
+            boolean isCompleted,
+            Integer reminderMinutesBefore,
+            String category
     ) {
         SQLiteDatabase db = getWritableDatabase();
 
@@ -81,6 +100,11 @@ public class DatabaseInsert extends SQLiteOpenHelper {
             values.putNull(DatabaseManager.FeedEntry.COLUMN_UNTIL_REMINDER);
         } else {
             values.put(DatabaseManager.FeedEntry.COLUMN_UNTIL_REMINDER, reminderMinutesBefore);
+        }
+        if (category == null || category.isEmpty()) {
+            values.putNull(DatabaseManager.FeedEntry.COLUMN_NAME_CATEGORY);
+        } else {
+            values.put(DatabaseManager.FeedEntry.COLUMN_NAME_CATEGORY, category);
         }
 
         return db.insert(DatabaseManager.FeedEntry.TABLE_NAME, null, values);
@@ -99,7 +123,7 @@ public class DatabaseInsert extends SQLiteOpenHelper {
     }
 
     public int updateEntry(long id, String title, String description, String date, String time) {
-        return updateEntry(id, title, description, date, time, null);
+        return updateEntry(id, title, description, date, time, null, null);
     }
 
     public int updateEntry(
@@ -109,6 +133,18 @@ public class DatabaseInsert extends SQLiteOpenHelper {
             String date,
             String time,
             Integer reminderMinutesBefore
+    ) {
+        return updateEntry(id, title, description, date, time, reminderMinutesBefore, null);
+    }
+
+    public int updateEntry(
+            long id,
+            String title,
+            String description,
+            String date,
+            String time,
+            Integer reminderMinutesBefore,
+            String category
     ) {
         SQLiteDatabase db = getWritableDatabase();
 
@@ -121,6 +157,11 @@ public class DatabaseInsert extends SQLiteOpenHelper {
             values.putNull(DatabaseManager.FeedEntry.COLUMN_UNTIL_REMINDER);
         } else {
             values.put(DatabaseManager.FeedEntry.COLUMN_UNTIL_REMINDER, reminderMinutesBefore);
+        }
+        if (category == null || category.isEmpty()) {
+            values.putNull(DatabaseManager.FeedEntry.COLUMN_NAME_CATEGORY);
+        } else {
+            values.put(DatabaseManager.FeedEntry.COLUMN_NAME_CATEGORY, category);
         }
 
         String selection = DatabaseManager.FeedEntry._ID + " = ?";
@@ -157,6 +198,7 @@ public class DatabaseInsert extends SQLiteOpenHelper {
 
         boolean hasReminderColumn = hasColumn(db, DatabaseManager.FeedEntry.COLUMN_UNTIL_REMINDER);
         boolean hasCompletedColumn = hasColumn(db, DatabaseManager.FeedEntry.COLUMN_NAME_COMPLETED);
+        boolean hasCategoryColumn = hasColumn(db, DatabaseManager.FeedEntry.COLUMN_NAME_CATEGORY);
 
         ArrayList<String> projectionList = new ArrayList<>();
         projectionList.add(DatabaseManager.FeedEntry._ID);
@@ -169,6 +211,9 @@ public class DatabaseInsert extends SQLiteOpenHelper {
         }
         if (hasCompletedColumn) {
             projectionList.add(DatabaseManager.FeedEntry.COLUMN_NAME_COMPLETED);
+        }
+        if (hasCategoryColumn) {
+            projectionList.add(DatabaseManager.FeedEntry.COLUMN_NAME_CATEGORY);
         }
 
         String[] projection = projectionList.toArray(new String[0]);
@@ -210,8 +255,13 @@ public class DatabaseInsert extends SQLiteOpenHelper {
                         cursor.getColumnIndexOrThrow(DatabaseManager.FeedEntry.COLUMN_NAME_COMPLETED)
                 ) == 1;
             }
+            String category = null;
+            if (hasCategoryColumn) {
+                int categoryIndex = cursor.getColumnIndexOrThrow(DatabaseManager.FeedEntry.COLUMN_NAME_CATEGORY);
+                category = cursor.isNull(categoryIndex) ? null : cursor.getString(categoryIndex);
+            }
 
-            items.add(new TodoItem(id, title, subtitle, date, time, reminderMinutesBefore, isCompleted));
+            items.add(new TodoItem(id, title, subtitle, date, time, reminderMinutesBefore, isCompleted, category));
         }
 
         cursor.close();

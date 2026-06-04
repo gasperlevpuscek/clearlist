@@ -2,90 +2,167 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:padding="16dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:backgroundTint="@color/backgroundWhite"
-    android:background="@color/backgroundWhite">
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:padding="20dp">
 
-    <EditText
-        android:id="@+id/atTaskName"
-        android:layout_width="379dp"
-        android:layout_height="48dp"
-        android:autofillHints="Task name"
-        android:background="@null"
-        android:focusable="true"
-        android:focusableInTouchMode="true"
-        android:hint="@string/task_name"
-        android:textColorHint="@color/hintGray"
-        android:textColor="@color/textGray"
-        android:inputType="text" />
-
-    <EditText
-        android:background="@null"
-        android:id="@+id/atTaskDescription"
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:hint="@string/task_description"
-        android:textColorHint="@color/hintGray"
-        android:inputType="textMultiLine"
-        android:layout_marginTop="8dp"
+        android:layout_height="wrap_content"
+        android:text="New Task"
         android:textColor="@color/textGray"
-        android:autofillHints="Description"/>
+        android:textSize="22sp"
+        android:textStyle="bold" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:hint="@string/task_name"
+        app:boxBackgroundColor="@color/white"
+        app:boxBackgroundMode="filled"
+        app:boxCornerRadiusTopStart="0dp"
+        app:boxCornerRadiusTopEnd="0dp"
+        app:boxCornerRadiusBottomStart="0dp"
+        app:boxCornerRadiusBottomEnd="0dp"
+        app:boxStrokeColor="@color/pastelistGreen"
+        app:boxStrokeWidth="1dp"
+        app:boxStrokeWidthFocused="2dp"
+        app:endIconMode="clear_text"
+        app:endIconTint="@color/hintGray"
+        app:hintTextColor="@color/hintGray">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/atTaskName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints="Task name"
+            android:inputType="textCapSentences"
+            android:minHeight="56dp"
+            android:textColor="@color/textGray"
+            android:textColorHint="@color/hintGray"
+            android:textSize="16sp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:hint="@string/task_description"
+        app:boxBackgroundColor="@color/white"
+        app:boxBackgroundMode="filled"
+        app:boxCornerRadiusTopStart="0dp"
+        app:boxCornerRadiusTopEnd="0dp"
+        app:boxCornerRadiusBottomStart="0dp"
+        app:boxCornerRadiusBottomEnd="0dp"
+        app:boxStrokeColor="@color/pastelistGreen"
+        app:boxStrokeWidth="1dp"
+        app:boxStrokeWidthFocused="2dp"
+        app:hintTextColor="@color/hintGray">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/atTaskDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints="Description"
+            android:gravity="top"
+            android:inputType="textMultiLine|textCapSentences"
+            android:minHeight="38dp"
+            android:maxLines="5"
+            android:textColor="@color/textGray"
+            android:textColorHint="@color/hintGray"
+            android:textSize="15sp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/atTaskOpenDatePicker"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="6dp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/white"
+            android:text="@string/date"
+            android:textAllCaps="false"
+            android:textColor="@color/textGray"
+            android:textSize="14sp"
+            app:cornerRadius="0dp"
+            app:iconGravity="textStart"
+            app:iconPadding="8dp"
+            app:iconTint="@color/hintGray"
+            app:strokeColor="@color/hintGray"
+            app:strokeWidth="1dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/atTaskReminder"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/white"
+            android:text="@string/reminder"
+            android:textAllCaps="false"
+            android:textColor="@color/textGray"
+            android:textSize="14sp"
+            app:cornerRadius="0dp"
+            app:iconGravity="textStart"
+            app:iconPadding="8dp"
+            app:iconTint="@color/hintGray"
+            app:strokeColor="@color/hintGray"
+            app:strokeWidth="1dp" />
+
+    </LinearLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp">
+        android:layout_marginTop="14dp">
 
-        <!-- Add button (far right) -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/atTaskCategory"
+            android:layout_width="0dp"
+            android:layout_height="54dp"
+            android:layout_marginEnd="10dp"
+            android:backgroundTint="@color/white"
+            android:text="Category"
+            android:textAllCaps="false"
+            android:textColor="@color/textGray"
+            android:textSize="14sp"
+            app:cornerRadius="0dp"
+            app:icon="@android:drawable/ic_menu_sort_by_size"
+            app:iconGravity="textStart"
+            app:iconPadding="8dp"
+            app:iconTint="@color/hintGray"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/atTaskAdd"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:strokeColor="@color/hintGray"
+            app:strokeWidth="1dp" />
+
         <ImageButton
             android:id="@+id/atTaskAdd"
-            android:layout_width="42dp"
-            android:layout_height="42dp"
-            android:layout_marginEnd="8dp"
+            android:layout_width="54dp"
+            android:layout_height="54dp"
             android:background="@color/pastelistGreen"
             android:contentDescription="@string/add_task"
-            android:src="@android:drawable/ic_menu_send"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            android:padding="15dp"
+            android:scaleType="center"
+            android:src="@android:drawable/ic_input_add"
+            app:tint="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:tint="@color/white" />
-
-        <!-- Reminder button (middle) -->
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/atTaskReminder"
-            android:layout_width="0dp"
-            android:layout_height="55dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:text="@string/reminder"
-            android:textAllCaps="false"
-            android:textColor="@color/textGray"
-            android:backgroundTint="@color/white"
-            app:cornerRadius="12dp"
-            app:layout_constraintStart_toEndOf="@id/atTaskOpenDatePicker"
-            app:layout_constraintEnd_toStartOf="@id/atTaskAdd"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" />
-
-        <!-- Date button (left) -->
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/atTaskOpenDatePicker"
-            android:layout_width="0dp"
-            android:layout_height="55dp"
-            android:layout_marginStart="8dp"
-            android:text="@string/date"
-            android:textAllCaps="false"
-            android:textColor="@color/textGray"
-            android:backgroundTint="@color/white"
-            app:cornerRadius="12dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/atTaskReminder"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

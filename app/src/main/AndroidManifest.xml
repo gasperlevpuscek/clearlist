@@ -21,6 +21,7 @@
             </intent-filter>
 
         </activity>
+        <activity android:name=".SearchTasks" />
         <receiver
             android:name=".ReminderReceiver"
             android:exported="false" />

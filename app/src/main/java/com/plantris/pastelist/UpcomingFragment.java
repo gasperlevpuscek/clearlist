@@ -36,7 +36,7 @@ public class UpcomingFragment extends Fragment {
     }
 
     public UpcomingFragment() {
-        super(R.layout.upcoming_task_view);
+        super(R.layout.view_upcoming);
     }
 
     @Override

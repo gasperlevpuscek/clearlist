@@ -71,11 +71,13 @@ public class AddTaskSheet {
         ImageButton btnAdd = view.findViewById(R.id.atTaskAdd);
         MaterialButton btnOpenDatePicker = view.findViewById(R.id.atTaskOpenDatePicker);
         MaterialButton btnOpenReminderPicker = view.findViewById(R.id.atTaskReminder);
+        MaterialButton btnCategory = view.findViewById(R.id.atTaskCategory);
 
         boolean isEditing = itemToEdit != null;
         String[] selectedDate = {isEditing ? safe(itemToEdit.getDate()) : ""};
         String[] selectedTime = {isEditing ? safe(itemToEdit.getTime()) : ""};
         Integer[] selectedReminderMinutesBefore = {isEditing ? itemToEdit.getReminderMinutesBefore() : null};
+        String[] selectedCategory = {isEditing ? safe(itemToEdit.getCategory()) : ""};
 
         if (isEditing) {
             taskNameInput.setText(safe(itemToEdit.getTitle()));
@@ -83,6 +85,9 @@ public class AddTaskSheet {
             btnOpenDatePicker.setText(formatDateTimeLabel(activity, selectedDate[0], selectedTime[0]));
             if (selectedReminderMinutesBefore[0] != null) {
                 btnOpenReminderPicker.setText(formatReminderLabel(activity, selectedReminderMinutesBefore[0]));
+            }
+            if (!selectedCategory[0].isEmpty()) {
+                btnCategory.setText(selectedCategory[0]);
             }
         }
 
@@ -101,13 +106,24 @@ public class AddTaskSheet {
                 })
         );
 
+        btnCategory.setOnClickListener(v ->
+                CategorySheet.show(activity, selectedCategory[0].isEmpty() ? null : selectedCategory[0], category -> {
+                    selectedCategory[0] = category != null ? category : "";
+                    if (category == null || category.isEmpty() || category.equals("None")) {
+                        btnCategory.setText(activity.getString(R.string.category));
+                    } else {
+                        btnCategory.setText(category);
+                    }
+                })
+        );
+
 
         btnAdd.setOnClickListener(v -> {
             String title = taskNameInput.getText().toString().trim();
             String description = taskDescriptionInput.getText().toString().trim();
             String date = selectedDate[0];
             String time = selectedTime[0];
-
+            String category = selectedCategory[0].isEmpty() || selectedCategory[0].equals("None") ? null : selectedCategory[0];
 
             if (title.isEmpty()) {
                 Toast.makeText(activity, "Title must not be empty", Toast.LENGTH_SHORT).show();
@@ -126,7 +142,8 @@ public class AddTaskSheet {
                             description,
                             date,
                             time,
-                            selectedReminderMinutesBefore[0]
+                            selectedReminderMinutesBefore[0],
+                            category
                     );
                 }
                 if (listener != null) {
@@ -138,7 +155,8 @@ public class AddTaskSheet {
                                     date,
                                     time,
                                     selectedReminderMinutesBefore[0],
-                                    itemToEdit.isCompleted()
+                                    itemToEdit.isCompleted(),
+                                    category
                             ),
                             false
                     );
@@ -152,7 +170,8 @@ public class AddTaskSheet {
                             date,
                             time,
                             false,
-                            selectedReminderMinutesBefore[0]
+                            selectedReminderMinutesBefore[0],
+                            category
                     );
                 }
 
@@ -165,7 +184,8 @@ public class AddTaskSheet {
                                     date,
                                     time,
                                     selectedReminderMinutesBefore[0],
-                                    false
+                                    false,
+                                    category
                             ),
                             true
                     );
@@ -210,7 +230,7 @@ public class AddTaskSheet {
             return activity.getString(R.string.reminder);
         }
         if (minutesBefore == 0) {
-            return "At time of event";
+            return "At time of task";
         }
         if (minutesBefore == 60) {
             return "1 hour before";

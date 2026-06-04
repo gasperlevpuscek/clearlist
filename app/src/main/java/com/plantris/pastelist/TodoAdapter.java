@@ -52,7 +52,7 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoVH> {
     @Override
     public TodoVH onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_todo, parent, false);
+                .inflate(R.layout.item_task, parent, false);
         return new TodoVH(v);
     }
 
@@ -64,8 +64,8 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoVH> {
         bindOptionalText(holder.textViewDescription, item.getDescription());
         bindOptionalTextWithIcon(holder.textViewDate, holder.imageViewDateIcon, item.getDate());
         bindOptionalTextWithIcon(holder.textViewTime, holder.imageViewTimeIcon, item.getTime());
+        bindCategoryText(holder.textViewCategory, item.getCategory());
 
-        // Check if task is overdue and apply appropriate border and text
         boolean overdue = isOverdue(item);
         if (overdue) {
             holder.textViewOverdue.setText(R.string.overdue);
@@ -138,6 +138,16 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoVH> {
             iconView.setVisibility(View.VISIBLE);
         }
     }
+
+    private void bindCategoryText(TextView textView, String category) {
+        if (category == null || category.trim().isEmpty() || category.equals("None")) {
+            textView.setText("");
+            textView.setVisibility(View.GONE);
+        } else {
+            textView.setText(category);
+            textView.setVisibility(View.VISIBLE);
+        }
+    }
     private boolean isOverdue(TodoItem item) {
         if (item.isCompleted()) {
             return false;
@@ -169,6 +179,9 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoVH> {
         TextView textViewDate;
         ImageView imageViewTimeIcon;
         TextView textViewTime;
+        TextView textViewCategory;
+        ImageView imageViewSubtaskIcon;
+        TextView textViewSubtaskCount;
         TextView textViewOverdue;
 
         TodoVH(@NonNull View itemView) {
@@ -180,6 +193,8 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoVH> {
             textViewDate = itemView.findViewById(R.id.textViewDate);
             imageViewTimeIcon = itemView.findViewById(R.id.imageViewTimeIcon);
             textViewTime = itemView.findViewById(R.id.textViewTime);
+            textViewCategory = itemView.findViewById(R.id.textViewCategory);
+
             textViewOverdue = itemView.findViewById(R.id.textViewOverdue);
 
         }

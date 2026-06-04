@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.android.material.button.MaterialButton;
 
 import java.util.ArrayList;
 
@@ -44,6 +45,7 @@ public class EditTask {
         EditText taskNameInput = editView.findViewById(R.id.edTTaskName);
         EditText taskDescriptionInput = editView.findViewById(R.id.edTTaskDescription);
         Button btnDate = editView.findViewById(R.id.btnDate);
+        MaterialButton btnCategory = editView.findViewById(R.id.btnCategory);
         Button btnSave = editView.findViewById(R.id.btnSave);
         ImageButton btnTaskMenu = editView.findViewById(R.id.btnTaskMenu);
         View addSubtaskButton = editView.findViewById(R.id.addSubtaskButton);
@@ -55,7 +57,12 @@ public class EditTask {
 
         String[] selectedDate = {safe(item.getDate())};
         String[] selectedTime = {safe(item.getTime())};
+        String[] selectedCategory = {safe(item.getCategory())};
         btnDate.setText(formatDateLabel(selectedDate[0], selectedTime[0]));
+
+        if (!selectedCategory[0].isEmpty() && !selectedCategory[0].equals("None")) {
+            btnCategory.setText(selectedCategory[0]);
+        }
 
         btnDate.setOnClickListener(v -> DateSheet.show(
                 activity,
@@ -68,6 +75,19 @@ public class EditTask {
                 }
         ));
 
+        btnCategory.setOnClickListener(v -> CategorySheet.show(
+                activity,
+                selectedCategory[0].isEmpty() ? null : selectedCategory[0],
+                category -> {
+                    selectedCategory[0] = category != null ? category : "";
+                    if (category == null || category.isEmpty() || category.equals("None")) {
+                        btnCategory.setText("Category");
+                    } else {
+                        btnCategory.setText(category);
+                    }
+                }
+        ));
+
         btnSave.setOnClickListener(v -> {
             TodoItem updatedItem = new TodoItem(
                     item.getId(),
@@ -76,7 +96,8 @@ public class EditTask {
                     selectedDate[0],
                     selectedTime[0],
                     item.getReminderMinutesBefore(),
-                    item.isCompleted()
+                    item.isCompleted(),
+                    selectedCategory[0].isEmpty() || selectedCategory[0].equals("None") ? null : selectedCategory[0]
             );
             listener.onSaveRequested(updatedItem);
             editDialog.dismiss();
