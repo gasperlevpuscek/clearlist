@@ -139,23 +139,6 @@
                     app:strokeWidth="1dp" />
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnCategory"
-                    android:layout_width="match_parent"
-                    android:layout_height="54dp"
-                    android:layout_marginTop="12dp"
-                    android:backgroundTint="@color/white"
-                    android:text="Category"
-                    android:textAllCaps="false"
-                    android:textColor="@color/textGray"
-                    android:textSize="15sp"
-                    app:cornerRadius="0dp"
-                    app:iconGravity="textStart"
-                    app:iconPadding="10dp"
-                    app:iconTint="@color/hintGray"
-                    app:strokeColor="@color/hintGray"
-                    app:strokeWidth="1dp" />
-
-                <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnSave"
                     android:layout_width="match_parent"
                     android:layout_height="54dp"
