@@ -302,7 +302,13 @@ public class AddTaskSheet {
                         pendingIntent
                 );
             } else {
-                Log.w(TAG, "Exact alarm access unavailable; reminder not scheduled");
+                Log.w(TAG, "Exact alarm access unavailable; using normal alarm instead");
+
+                alarmManager.set(
+                        AlarmManager.RTC_WAKEUP,
+                        triggerTime,
+                        pendingIntent
+                );
             }
         } catch (SecurityException e) {
             Log.e(TAG, "Failed to schedule reminder due to alarm permission restrictions", e);
